@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>All Tiny Homes</h1>
+  <div class="container">
+    <div class="cards">
+      <% @homes.each do |home| %>
+        <div class="card">
+          <%= home.name %>
+          <%= home.description %>
+          <p><%= home.price %>/day</p>
+          <% if home.photo.attached? %>
+            <%= cl_image_tag home.photo.key %>
+          <% end %>
+
+          <%= button_to home,
+            method: :delete,
+            data: { turbo_confirm: "Are you sure?" },
+            class: "btn btn-ghost2" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

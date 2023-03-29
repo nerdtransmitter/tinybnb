@@ -1,0 +1,14 @@
+<div class = "container form-container ">
+  <div class="row">
+    <div class="col-8 ">
+      <%= simple_form_for(home) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :price %>
+        <%= f.input :address %>
+        <%= f.input :photo, as: :file %>
+        <%= f.submit 'Add home', class: "btn-ghost border border-light mt-3"%>
+      <% end %>
+      </div>
+    </div>
+</div>

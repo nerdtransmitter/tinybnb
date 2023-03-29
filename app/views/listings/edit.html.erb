@@ -1,0 +1,36 @@
+<div class="">
+  <div class="product-show-card" data-controller="dynamic-listing-price"
+      data-dynamic-listing-price-price-value="<%= @home.price %>">
+
+    <div class="">
+        <%= simple_form_for [@home, @listing], html: {
+              data: {
+                controller: 'flatpickr',
+                flatpickr_dates_value: @home.flatpickr_booked_dates_object
+              }
+            }  do |f| %>
+          <%= f.input :start_date, label: false, as: :string,
+                                  input_html: {
+                                    class: 'd-none',
+                                    data: {
+                                      flatpickr_target: 'startDateInput',
+                                      dynamic_listing_price_target: 'startDateInput',
+                                      action: 'change->dynamic-listing-price#updatePrice'
+                                    }
+                                } %>
+          <%= f.input :end_date, label: false, as: :string,
+                                  input_html: {
+                                    class: 'd-none',
+                                    data: {
+                                      flatpickr_target: 'endDateInput',
+                                      dynamic_listing_price_target: 'endDateInput',
+                                      action: 'change->dynamic-listing-price#updatePrice'
+                                    }
+                                } %>
+          <%= f.input :home_id, as: :hidden, input_html: { value: @home.id } %>
+          <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+          <%= f.submit 'Rent this home', class: "btn-flat border-0 w-100"%>
+        <% end %>
+    </div>
+  </div>
+</div>
